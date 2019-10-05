@@ -1,0 +1,35 @@
+id,tokens,slots,intent
+0,create a directory on the desktop,o o o o o dirloc,mkdir
+1,create a directory,o o o,mkdir
+2,create a folder,o o o,mkdir
+3,create a folder named abc at dekstop/tp,o o o o dirname o dirloc,mkdir
+4,create a folder named xyz at dekstop,o o o o dirname o dirloc,mkdir
+5,create a folder named xyz,o o o o dirname,mkdir
+6,create a folder xyz,o o o dirname,mkdir
+7,create a directory xyz,o o o dirname,mkdir
+8,i want a folder named xyz123 at location desktop/tp,o o o o o dirname o o dirloc,mkdir
+9,move to abc123 directory,o o dirname o,cd
+10,go to abc123 directory,o o dirname o,cd
+11,open desktop/tp,o dirname,cd
+12,move to abc folder,o o dirname o,cd
+13,list all the files in this folder,o o o o o o o,ls
+14,list all the files in this directory,o o o o o o o,ls
+15,list all files on the desktop/tp,o o o o o dirname,ls
+16,show me all the folders,o o o o o,ls
+17,show all the folders on desktop/tp,o o o o o dirname,ls
+18,go to abc folder,o o dirname o,cd
+19,create a file named abc.txt,o o o o filname,touch
+20,create a file named abc.txt on the desktop,o o o o filname o o dirloc,touch
+21,i want a new file,o o o o o,touch
+22,i want a new file named txt.txt,o o o o o o filname,touch
+23,i want a new file named txt.txt on desktop/tp,o o o o o o filname o dirloc,touch
+24,create a document,o o o,touch
+25,show me how to use abc,o o o o o comname,man
+26,show me the usage of abc,o o o o o comname,man
+27,show me the usage of ls,o o o o o comname,man
+28,show me the usage of rmdir,o o o o o comname,man
+29,show me the usage of man,o o o o o comname,man
+30,how do i use ls,o o o o comname,man
+31,i want to understand the usage of ls,o o o o o o o comname,man
+32,how is ls used,o o comname o,man
+33,documentation of ls,o o comname,man
