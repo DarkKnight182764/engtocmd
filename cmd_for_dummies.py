@@ -23,5 +23,8 @@ if __name__ == '__main__':
             prevslotv = None
             q = ""
             for cmd in res["cmd"]:
-                q = q + cmd + " \n "
+                if "cd" in cmd:
+                    os.chdir(cmd[3:])
+                else:
+                    q = q + cmd + " \n "
             print(os.system(q))

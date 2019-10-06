@@ -10,7 +10,7 @@ word_vec_file = "data/wiki-news-300d-1M.vec"
 sess = tf.Session()
 graph = tf.get_default_graph()
 keras.backend.set_session(sess)
-model = keras.models.load_model("data/kj_cb-e17-nd100k.h5")
+model = keras.models.load_model("data/kj_cb-e13-nd100k.h5")
 print(model.summary())
 
 df = pd.read_csv(train_file)

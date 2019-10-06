@@ -26,28 +26,20 @@ def proc_slots(slots, ip):
     return ret
 
 
-def check_num(s):
-    try:
-        float(s)
-        return True
-    except Exception as e:
-        return False
-
-
 app = Flask(__name__)
 
 
 @app.route('/engtocmd', methods=["POST"])
-def hello():
-    oeng = str(request.json["eng"])
+def index():
+    oeng = str(request.get_json(force=True)["eng"])
     eng = clean(oeng)
     prediction = predict(eng)
     print(prediction)
     intent = prediction["intent"]
     slots = proc_slots(prediction["slots"], eng)
-    if "slots" in request.json:
-        for k in request.json["slots"]:
-            slots[k] = request.json["slots"][k]
+    if "slots" in request.get_json(force=True):
+        for k in request.get_json(force=True)["slots"]:
+            slots[k] = request.get_json(force=True)["slots"][k]
 
     if intent == "mkdir":
         if "dirname" in slots:
@@ -62,6 +54,21 @@ def hello():
         if "dirname" not in slots:
             return jsonify({
                 "res": "What do you want the directory to be named?",
+                "slot": "dirname"
+            })
+    elif intent == "rmdir":
+        if "dirname" in slots:
+            if "dirloc" in slots:
+                return jsonify({
+                    "cmd": ["cd " + slots["dirloc"], "rmdir " + slots["dirname"]]
+                })
+            else:
+                return jsonify({
+                    "cmd": ["rmdir " + slots["dirname"]]
+                })
+        if "dirname" not in slots:
+            return jsonify({
+                "res": "What is the name of the folder?",
                 "slot": "dirname"
             })
     elif intent == "cd":
@@ -108,6 +115,10 @@ def hello():
             return jsonify({
                 "cmd": ["man " + slots["comname"]]
             })
+    elif intent == "cdback":
+        return jsonify({
+            "cmd": ["cd .."]
+        })
     # elif intent == "mv":
     #     if "mv_source" in slots and "mv_dest" in slots:
     #         return jsonify({
