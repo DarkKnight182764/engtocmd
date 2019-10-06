@@ -21,10 +21,10 @@ if __name__ == '__main__':
         elif "cmd" in res:
             prevslotk = None
             prevslotv = None
+            if len(res["cmd"]) == 1 and "cd" in res["cmd"][0]:
+                os.chdir(res["cmd"][0][3:])
+                continue
             q = ""
             for cmd in res["cmd"]:
-                if "cd" in cmd:
-                    os.chdir(cmd[3:])
-                else:
-                    q = q + cmd + " \n "
+                q = q + cmd + " \n "
             print(os.system(q))
